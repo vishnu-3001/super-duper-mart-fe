@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient,HttpErrorResponse,HttpParams } from "@angular/common/http";
+import { HttpClient,HttpErrorResponse,HttpHeaders,HttpParams } from "@angular/common/http";
 import { Observable,throwError } from "rxjs";
 import { catchError } from 'rxjs/operators';
+import { environment } from "src/environments/environment";
 
 
 @Injectable({
@@ -36,8 +37,16 @@ export class ApiService{
         body?:any,
         params?:any
     ):Observable<T>{
+        const token=sessionStorage.getItem('auth_token');
+        let headers=new HttpHeaders();
+        const baseUrl = environment.shoppingBaseUrl.replace(/\/$/, '');
+        const isProtectedUrl=(url.startsWith(`${baseUrl}/user/`)||url.startsWith(`${baseUrl}/admin/`));
+        if(token&&isProtectedUrl){
+            headers=headers.set('Authorization',`Bearer ${token}`);
+        }
         return this.http.request<T>(method,url,{
             body:body,
+            headers:headers,
             params:this.buildParams(params)
         }).pipe(
             catchError(error => this.handleError(error))

@@ -16,7 +16,7 @@ export class AppComponent {
     }
     this.authService.login(request).subscribe(
       response => {
-        console.log('Login successful:', response);
+        console.log('Login successful:');
       },
       error => {
         console.error('Login failed:', error);

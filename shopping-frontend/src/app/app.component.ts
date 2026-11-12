@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { AuthService, Loginrequest } from './core/services/auth.service';
+import { AuthService, LoginRequest } from './core/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'shopping-frontend';
   constructor(private authService:AuthService){}
   ngOnInit():void{
-    const request:Loginrequest={
+    const request:LoginRequest={
       username:'john123',
       password:'John@123'
     }

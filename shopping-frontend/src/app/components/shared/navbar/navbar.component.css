@@ -1,0 +1,11 @@
+mat-toolbar{
+    min-height: 4%;
+    height: auto;
+    padding: 8px 16px;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.spacer {
+    flex: 1;
+}
+  

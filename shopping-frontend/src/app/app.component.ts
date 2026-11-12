@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './core/services/auth.service';
-import { LoginRequest } from 'src/models/auth.model';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,19 +8,16 @@ import { LoginRequest } from 'src/models/auth.model';
 })
 export class AppComponent {
   title = 'shopping-frontend';
-  constructor(private authService:AuthService){}
-  ngOnInit():void{
-    const request:LoginRequest={
-      username:'john123',
-      password:'John@123'
+  constructor(private authService:AuthService,private router:Router){}
+  get showNavBar():boolean{
+    if(!this.authService.isLoggedIn()){
+      return false;
     }
-    this.authService.login(request).subscribe(
-      response => {
-        console.log('Login successful:');
-      },
-      error => {
-        console.error('Login failed:', error);
-      }
-    );
+    const currentUrl = this.router.url.split('?')[0];
+    if(currentUrl==='/login'||currentUrl==='/register') {
+      return false;
+    }
+    return true;
   }
 }
+

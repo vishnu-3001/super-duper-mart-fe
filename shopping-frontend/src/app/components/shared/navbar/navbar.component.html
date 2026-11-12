@@ -1,0 +1,30 @@
+<mat-toolbar color="primary">
+    <span>Super Duper Mart</span>
+    <span class="spacer"></span>
+    <ng-container *ngIf="role==='USER'">
+        <a mat-button routerLink="/user">
+            Home
+        </a>
+        <a mat-button routerLink="/user/products">
+            Products
+        </a>
+        <a mat-button routerLink="/user/cart">
+            Cart ({{ (cartservice.cartCount$ | async) ?? 0 }})
+        </a>
+        <a mat-button routerLink="/user/watchlist">
+            Watchlist
+        </a>
+    </ng-container>
+    <ng-container *ngIf="role==='ADMIN'">
+        <a mat-button routerLink="/admin">
+            Dashboard
+        </a>
+        <a mat-button routerLink="/admin/products">
+            Products
+        </a>
+        <a mat-button routerLink="/admin/orders">
+            Watchlist
+        </a>
+    </ng-container>
+    <button mat-button (click)="logout()">LogOut</button>
+</mat-toolbar>

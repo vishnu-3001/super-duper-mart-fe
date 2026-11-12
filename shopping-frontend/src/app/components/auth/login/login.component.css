@@ -1,0 +1,19 @@
+.login-container{
+    width:90%;
+    height: 90%;
+    margin: 5%;
+    border: 1px solid #ddd;
+    background-color: white;
+}
+mat-form-field {
+    width: 100%;
+    display: block;
+  }
+  
+  button {
+    margin-top: 1%;
+  }
+
+  .error {
+    color: red;
+  }

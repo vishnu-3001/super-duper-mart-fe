@@ -16,6 +16,12 @@ export interface LoginResponse {
   role: string;
 }
 
+export interface RegisterRequest{
+    username:string;
+    email:string;
+    password:string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +31,6 @@ export class AuthService {
 
   login(credentials: LoginRequest): Observable<LoginResponse> {
     const url = `${environment.authBaseUrl}/auth/login`;
-
     return this.apiService
       .post<LoginResponse>(url, credentials)
       .pipe(
@@ -37,6 +42,9 @@ export class AuthService {
           );
         })
       );
+  }
+  register(user: RegisterRequest): Observable<unknown> {
+    return this.apiService.post<unknown>(`${environment.authBaseUrl}/auth/register`,user);
   }
 
   logout(): void {

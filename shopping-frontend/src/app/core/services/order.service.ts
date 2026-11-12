@@ -4,15 +4,16 @@ import { Observable } from 'rxjs';
 
 import { ApiService } from './api.service';
 import { AuthService } from './auth.service';
+import { OrderItemRequest,CreateOrderRequest } from 'src/models/order.model';
 
-export interface OrderItemRequest {
-  productId: number;
-  quantity: number;
-}
+// export interface OrderItemRequest {
+//   productId: number;
+//   quantity: number;
+// }
 
-export interface CreateOrderRequest {
-  orderItems: OrderItemRequest[];
-}
+// export interface CreateOrderRequest {
+//   orderItems: OrderItemRequest[];
+// }
 
 @Injectable({
   providedIn: 'root'

@@ -6,21 +6,7 @@ import { tap } from 'rxjs/operators';
 import { ApiService } from './api.service';
 import { environment } from 'src/environments/environment';
 
-export interface LoginRequest {
-  username: string;
-  password: string;
-}
-
-export interface LoginResponse {
-  token: string;
-  role: string;
-}
-
-export interface RegisterRequest{
-    username:string;
-    email:string;
-    password:string;
-}
+import { LoginRequest,LoginResponse,RegisterRequest } from 'src/models/auth.model';
 
 @Injectable({
   providedIn: 'root'

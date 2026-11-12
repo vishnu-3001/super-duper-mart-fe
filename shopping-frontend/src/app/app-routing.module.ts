@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGaurd } from './core/services/gaurds/auth.gaurd';
+import { AuthGaurd } from './core/gaurds/auth.gaurd';
 
 
 const routes: Routes = [

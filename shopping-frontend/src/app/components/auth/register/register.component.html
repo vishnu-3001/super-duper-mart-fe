@@ -1,0 +1,41 @@
+<div class="register-container">
+    <h2>super duper mart user registeration</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline">
+            <mat-label>UserName</mat-label>
+            <input matInput type="text" formControlName="username">
+            <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
+                Username is required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email">
+            <mat-error *ngIf="registerForm.get('email')?.hasError('required')">
+                Email is required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+            <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
+                Password is required
+            </mat-error>
+        </mat-form-field>
+        <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="registerForm.invalid || isLoading">
+        {{ isLoading ? 'Registering...' : 'Register' }}
+      </button>
+    </form>
+    <p class="error" *ngIf="errorMEssage">
+        {{ errorMEssage }}
+      </p>
+    
+      <p>
+        Already have an account?
+        <a routerLink="/login">Login</a>
+      </p>
+</div>

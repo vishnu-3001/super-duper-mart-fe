@@ -1,0 +1,23 @@
+
+.container {
+    max-width:60%;
+    margin: 6% auto;
+    padding: 4%;
+    background-color: white;
+    border: 1px solid #ddd;
+  }
+  
+  mat-form-field {
+    display: block;
+    width: 100%;
+  }
+  
+  button {
+    margin-right: 2%;
+    margin-top: 2%;
+  }
+  
+  .error {
+    color: red;
+  }
+  

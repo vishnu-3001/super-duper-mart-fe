@@ -1,0 +1,18 @@
+
+.container {
+    padding: 4%;
+  }
+  
+  table {
+    width: 100%;
+    margin-top: 3%;
+  }
+  
+  button {
+    margin-right: 1%;
+  }
+  
+  .error {
+    color: red;
+  }
+  

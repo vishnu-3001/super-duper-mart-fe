@@ -6,14 +6,11 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/sahred.module';
-import { ProductComponent } from './features/products/product/product.component';
-import { ProductDetailComponent } from './features/products/product-detail/product-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductComponent,
-    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

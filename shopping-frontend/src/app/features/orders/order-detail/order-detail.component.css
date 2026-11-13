@@ -1,0 +1,24 @@
+
+.container {
+    max-width: 30%;
+    margin: 6% auto;
+    padding: 4%;
+  }
+  
+  table {
+    width: 100%;
+    margin-top: 3%;
+  }
+  
+  .actions {
+    margin-top: 4%;
+  }
+  
+  button {
+    margin-right: 2%;
+  }
+  
+  .error {
+    color: red;
+  }
+  

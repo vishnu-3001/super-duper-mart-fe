@@ -1,0 +1,17 @@
+
+.container {
+    padding: 4%;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  button {
+    margin-right: 1%;
+  }
+  
+  .error {
+    color: red;
+  }
+  

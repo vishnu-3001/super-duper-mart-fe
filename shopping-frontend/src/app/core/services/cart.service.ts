@@ -38,21 +38,13 @@ export class CartService{
       throw new Error('Quantity must be a positive integer');
     }
     const items = this.getCartItems();
-
-    const existingItem = items.find(
-      item => item.productId === product.productId
-    );
+    const existingItem = items.find(item => item.productId === product.productId);
     if (existingItem) {
-      existingItem.quantity += quantity;
+        existingItem.quantity += quantity;
     } else {
-      items.push({
-        productId: product.productId,
-        productName: product.productName,
-        retailPrice: product.retailPrice,
-        quantity: quantity
-      });
+        const cartItem: CartItem = {...product,quantity: quantity};
+      items.push(cartItem);
     }
-
     this.saveCart(items);
   }
 

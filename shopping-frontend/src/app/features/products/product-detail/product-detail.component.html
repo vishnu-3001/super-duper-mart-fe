@@ -1,1 +1,96 @@
-<p>product-detail works!</p>
+<div class="container">
+<h2>
+    {{isCreateMode?'AddProduct':'Product Details'}}
+</h2>
+<p *ngIf="isLoading">Loading...</p>
+<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+  <!-- READ-ONLY MODE -->
+  <div *ngIf="product && !isEditMode">
+    <p><strong>ID:</strong> {{ product.productId }}</p>
+    <p><strong>Name:</strong> {{ product.productName }}</p>
+    <p>
+      <strong>Description:</strong>
+      {{ product.description }}
+    </p>
+    <p>
+      <strong>Retail Price:</strong>
+      {{ product.retailPrice | currency }}
+    </p>
+    <ng-container *ngIf="isAdmin">
+      <p>
+        <strong>Wholesale Price:</strong>
+        {{ product.wholesalePrice | currency }}
+      </p>
+
+      <p>
+        <strong>Stock:</strong>
+        {{ product.quantity }}
+      </p>
+
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="enableEdit()">
+        Edit
+      </button>
+    </ng-container>
+  </div>
+
+  <!-- CREATE OR EDIT MODE -->
+  <form
+    *ngIf="isAdmin && isEditMode"
+    [formGroup]="productForm"
+    (ngSubmit)="saveProduct()">
+    <mat-form-field appearance="outline">
+      <mat-label>Product Name</mat-label>
+      <input matInput formControlName="productName">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description">
+      </textarea>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Wholesale Price</mat-label>
+      <input
+        matInput
+        type="number"
+        min="0"
+        formControlName="wholesalePrice">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Retail Price</mat-label>
+      <input
+        matInput
+        type="number"
+        min="0"
+        formControlName="retailPrice">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Quantity</mat-label>
+      <input
+        matInput
+        type="number"
+        min="0"
+        step="1"
+        formControlName="quantity">
+    </mat-form-field>
+    <div>
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="productForm.invalid || isLoading">
+        {{ isCreateMode ? 'Create Product' : 'Save Changes' }}
+      </button>
+      <button
+        mat-button
+        type="button"
+        (click)="cancelEdit()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

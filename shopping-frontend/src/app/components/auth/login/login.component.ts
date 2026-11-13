@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { LoginRequest } from 'src/models/auth.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent {
   errorMessage='';
   successMessage=''
 
-  constructor(private formBuilder:FormBuilder,private authService:AuthService) {
+  constructor(private formBuilder:FormBuilder,private authService:AuthService,private router:Router) {
     this.loginForm=this.formBuilder.group({
       username:['',Validators.required],
       password:['',Validators.required]
@@ -35,8 +36,11 @@ export class LoginComponent {
     this.authService.login(loginRequest).subscribe({
       next:response=>{
         this.isLoading=false;
-        this.successMessage =
-          `Login successful. Role: ${loginRequest.username}`;
+        const url = response.role === 'ADMIN'
+        ? '/admin/products'
+        : '/user/products';
+    
+      this.router.navigateByUrl(url);
       },
       error: error => {
         this.isLoading = false;

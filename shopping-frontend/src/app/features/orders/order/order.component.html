@@ -1,0 +1,95 @@
+
+<div class="container">
+
+    <h2>{{ isAdmin ? 'All Orders' : 'My Orders' }}</h2>
+  
+    <p *ngIf="isLoading">Loading orders...</p>
+  
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+  
+    <table
+      mat-table
+      [dataSource]="orders"
+      *ngIf="!isLoading">
+  
+      <!-- ORDER ID -->
+      <ng-container matColumnDef="orderId">
+        <th mat-header-cell *matHeaderCellDef>
+          Order ID
+        </th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.orderId }}
+        </td>
+      </ng-container>
+  
+      <!-- DATE -->
+      <ng-container matColumnDef="placedAt">
+        <th mat-header-cell *matHeaderCellDef>
+          Order Date
+        </th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.placedAt | date:'medium' }}
+        </td>
+      </ng-container>
+  
+      <!-- STATUS -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>
+          Status
+        </th>
+        <td mat-cell *matCellDef="let order">
+          {{ order.status }}
+        </td>
+      </ng-container>
+  
+      <!-- ACTIONS -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>
+          Actions
+        </th>
+  
+        <td mat-cell *matCellDef="let order">
+  
+          <button
+            mat-button
+            (click)="viewOrder(order.orderId)">
+            View
+          </button>
+  
+          <button
+            mat-button
+            color="warn"
+            *ngIf="order.status === 'PROCESSING'"
+            [disabled]="updatingOrderId !== null"
+            (click)="changeStatus(order, 'cancel')">
+            Cancel
+          </button>
+  
+          <button
+            mat-button
+            color="primary"
+            *ngIf="isAdmin && order.status === 'PROCESSING'"
+            [disabled]="updatingOrderId !== null"
+            (click)="changeStatus(order, 'complete')">
+            Complete
+          </button>
+  
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row
+        *matHeaderRowDef="displayedColumns"></tr>
+  
+      <tr mat-row
+        *matRowDef="let row; columns: displayedColumns"></tr>
+  
+    </table>
+  
+    <p *ngIf="!isLoading && !errorMessage && orders.length === 0">
+      No orders found.
+    </p>
+  
+  </div>
+  

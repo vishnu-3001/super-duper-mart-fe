@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
@@ -7,10 +6,12 @@ import { UserRoutingModule } from './user-routing.module';
 import { ProductSharedModule } from '../products/product-shared.module';
 import { OrderSharedModule } from '../orders/order-shared.module';
 import { WatchlistComponent } from './watchlist/watchlist.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
-    WatchlistComponent
+    WatchlistComponent,
+    CartComponent
   ],
   imports: [
     CommonModule,

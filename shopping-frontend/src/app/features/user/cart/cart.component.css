@@ -1,0 +1,23 @@
+
+.container {
+    padding: 4%;
+  }
+  
+  table {
+    width: 100%;
+    margin-bottom: 4%;
+  }
+  
+  input[type="number"] {
+    width: 14%;
+    padding: 1%;
+  }
+  
+  button {
+    margin-right: 1%;
+  }
+  
+  .error {
+    color: red;
+  }
+  

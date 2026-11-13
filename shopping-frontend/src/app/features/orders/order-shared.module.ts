@@ -5,9 +5,6 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { RouterModule } from '@angular/router';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
-
-
-
 @NgModule({
   declarations: [
     OrderComponent,

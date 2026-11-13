@@ -6,7 +6,6 @@ import { OrderComponent } from '../orders/order/order.component';
 import { OrderDetailComponent } from '../orders/order-detail/order-detail.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { CartComponent } from './cart/cart.component';
-
 const routes: Routes = [
   {
     path: '',

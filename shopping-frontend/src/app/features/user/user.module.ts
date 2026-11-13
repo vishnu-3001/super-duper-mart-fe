@@ -7,7 +7,6 @@ import { ProductSharedModule } from '../products/product-shared.module';
 import { OrderSharedModule } from '../orders/order-shared.module';
 import { WatchlistComponent } from './watchlist/watchlist.component';
 import { CartComponent } from './cart/cart.component';
-
 @NgModule({
   declarations: [
     WatchlistComponent,

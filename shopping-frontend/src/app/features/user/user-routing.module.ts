@@ -1,12 +1,11 @@
-
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { ProductComponent } from '../products/product/product.component';
 import { ProductDetailComponent } from '../products/product-detail/product-detail.component';
 import { OrderComponent } from '../orders/order/order.component';
 import { OrderDetailComponent } from '../orders/order-detail/order-detail.component';
 import { WatchlistComponent } from './watchlist/watchlist.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   {
@@ -33,6 +32,10 @@ const routes: Routes = [
   {
     path: 'watchlist',
     component: WatchlistComponent
+  },
+  {
+    path: 'cart',
+    component: CartComponent
   }
 ];
 

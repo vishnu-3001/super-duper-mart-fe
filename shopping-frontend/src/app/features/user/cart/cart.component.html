@@ -1,0 +1,132 @@
+
+<div class="container">
+
+    <h2>Shopping Cart</h2>
+  
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+  
+    <ng-container *ngIf="cartService.cart$ | async as items">
+  
+      <div *ngIf="items.length === 0">
+        <p>Your cart is empty.</p>
+  
+        <button
+          mat-raised-button
+          color="primary"
+          routerLink="/user/products">
+          Browse Products
+        </button>
+      </div>
+  
+      <div *ngIf="items.length > 0">
+  
+        <table mat-table [dataSource]="items">
+  
+          <!-- PRODUCT NAME -->
+          <ng-container matColumnDef="productName">
+            <th mat-header-cell *matHeaderCellDef>
+              Product Name
+            </th>
+  
+            <td mat-cell *matCellDef="let item">
+              <button
+                mat-button
+                (click)="viewProduct(item.productId)">
+                {{ item.productName }}
+              </button>
+            </td>
+          </ng-container>
+  
+          <!-- RETAIL PRICE -->
+          <ng-container matColumnDef="retailPrice">
+            <th mat-header-cell *matHeaderCellDef>
+              Price
+            </th>
+  
+            <td mat-cell *matCellDef="let item">
+              {{ item.retailPrice | currency }}
+            </td>
+          </ng-container>
+  
+          <!-- QUANTITY -->
+          <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef>
+              Quantity
+            </th>
+  
+            <td mat-cell *matCellDef="let item">
+  
+              <input
+                #quantityInput
+                type="number"
+                min="1"
+                step="1"
+                [value]="item.quantity"
+                [disabled]="isPlacingOrder"
+                [attr.aria-label]="'Quantity for ' + item.productName"
+                (change)="updateQuantity(item, quantityInput)">
+  
+            </td>
+          </ng-container>
+  
+          <!-- SUBTOTAL -->
+          <ng-container matColumnDef="subtotal">
+            <th mat-header-cell *matHeaderCellDef>
+              Subtotal
+            </th>
+  
+            <td mat-cell *matCellDef="let item">
+              {{ item.retailPrice * item.quantity | currency }}
+            </td>
+          </ng-container>
+  
+          <!-- ACTIONS -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>
+              Actions
+            </th>
+  
+            <td mat-cell *matCellDef="let item">
+  
+              <button
+                mat-button
+                color="warn"
+                [disabled]="isPlacingOrder"
+                (click)="removeProduct(item.productId)">
+                Remove
+              </button>
+  
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row
+            *matHeaderRowDef="displayedColumns"></tr>
+  
+          <tr mat-row
+            *matRowDef="let row; columns: displayedColumns"></tr>
+  
+        </table>
+  
+        <h3>
+          Total:
+          {{ (cartService.cartTotal$ | async) ?? 0 | currency }}
+        </h3>
+  
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="isPlacingOrder"
+          (click)="placeOrder()">
+  
+          {{ isPlacingOrder ? 'Placing Order...' : 'Place Order' }}
+  
+        </button>
+  
+      </div>
+  
+    </ng-container>
+  
+  </div>
+  
